@@ -4,9 +4,12 @@ public class FantasySwordDuels {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        String submittedName = nameEntry(input);
+        userHero hero = new userHero();
 
-        userHero hero = new userHero(submittedName);
+        System.out.println("Welcome to Fantasy Sword Duels!");
+        System.out.print("What is your name? ");
+        String name = input.nextLine();
+        hero.setName(name);
 
         System.out.println("Greetings, " + hero.getName() + "!");
 
@@ -51,12 +54,7 @@ public class FantasySwordDuels {
 //         */
 //    }
 
-    public static String nameEntry(Scanner input) {
-        System.out.println("Welcome to Fantasy Sword Duels!");
-        System.out.print("What is your name? ");
-        String name = input.nextLine();
-        return name;
-    }
+
 
 
 

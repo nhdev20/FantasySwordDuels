@@ -8,7 +8,7 @@ public class userHero {
     private int strength;
     private int armor = strength / 2;
 
-    public userHero(String name) {
+    public void setName(String name) {
         this.name = name;
     }
     public String getName() {
@@ -36,6 +36,11 @@ public class userHero {
         return this.armor;
     }
 
+    public String nameEntry(Scanner input) {
+
+        return name;
+    }
+
     public void printOutStats() {
         System.out.println("Health: " + this.health + "\nSpeed: " + this.speed + "\nStrength: " + this.strength);
     }
@@ -45,11 +50,11 @@ public class userHero {
         System.out.println("\n***********ATTRIBUTE SELECTION***********\n");
         boolean canContinue = false;
         while (!canContinue) {
-            System.out.println("You have 15 attribute points to distribute among three attributes: health, speed, and strength");
+            System.out.println("You have 15 attribute points to distribute among three attributes: Health, Speed, and Strength");
             System.out.println("Health determines how much damage you can take and continue forward.");
             System.out.println("Speed determines how quickly you can move out of the way or perform a quick attack.");
             System.out.println("Strength determines your damage and armor protection.");
-            System.out.println("You must put at least one point in each category");
+            System.out.println("\n<You must put at least one point in each category.>\n");
 
             int distributeTotal = 15;
             boolean inBounds = false;
@@ -93,11 +98,11 @@ public class userHero {
                 }
             }
 
-            System.out.println(this.getName() + ", you have opted to disseminate your points as follows:");
+            System.out.println("\n" + this.getName() + ", you have opted to disseminate your points as follows:");
             System.out.println("Health: " + hpAddition);
             System.out.println("Speed: " + speedAddition);
             System.out.println("Strength: " + strengthAddition);
-            System.out.print("Do you want to (c)ontinue or (r)eselect your attributes? ");
+            System.out.print("\nDo you want to (c)ontinue or (r)eselect your attributes? ");
             String response = input.nextLine();
             if (response.equals("c")) {
                 canContinue = true;
