@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
 public class FantasySwordDuels {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        FantasySwordDuels fsdApp = new FantasySwordDuels();
+        fsdApp.run();
+    }
+
+    public void run() {
         userHero hero = new userHero();
 
         CombatUtils combat = new CombatUtils();
 
-        System.out.println("Welcome to Fantasy Sword Duels!");
-        System.out.print("What is your name? ");
-        String name = input.nextLine();
-        hero.setName(name);
-
-        System.out.println("Greetings, " + hero.getName() + "!");
+        welcomeAndNameSetting(input, hero);
 
         hero.attributeSelection();
 
@@ -29,6 +29,14 @@ public class FantasySwordDuels {
         practiceDummy.setSpeed(4);
         practiceDummy.setStrength(3);
         combat.combatEncounter(hero, practiceDummy);
+    }
+
+    public void welcomeAndNameSetting(Scanner input, userHero hero) {
+        System.out.println("Welcome to Fantasy Sword Duels!");
+        System.out.print("What is your name? ");
+        String name = input.nextLine();
+        hero.setName(name);
+        System.out.println("Greetings, " + hero.getName() + "!");
     }
 
 

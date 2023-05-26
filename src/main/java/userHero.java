@@ -36,6 +36,10 @@ public class userHero {
         return this.armor;
     }
 
+    public double damageReductionPercentage() {
+        return (armor * 5) / 100.0;
+    }
+
     public String nameEntry(Scanner input) {
 
         return name;

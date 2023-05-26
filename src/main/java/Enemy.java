@@ -6,6 +6,8 @@ public class Enemy {
     private int speed;
     private int strength;
 
+    private int armor = strength / 2;
+
     public Enemy(String name) {
         this.name = name;
     }
@@ -40,5 +42,12 @@ public class Enemy {
 
     public int enemyCombatOption() {
         return tools.getRandomNumber(4);
+    }
+
+    public int getArmor() {
+        return this.armor;
+    }
+    public double damageReductionPercentage() {
+        return (armor * 5) / 100.0;
     }
 }
