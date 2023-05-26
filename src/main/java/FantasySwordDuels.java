@@ -6,6 +6,8 @@ public class FantasySwordDuels {
 
         userHero hero = new userHero();
 
+        CombatUtils combat = new CombatUtils();
+
         System.out.println("Welcome to Fantasy Sword Duels!");
         System.out.print("What is your name? ");
         String name = input.nextLine();
@@ -17,22 +19,19 @@ public class FantasySwordDuels {
 
         hero.printOutStats();
 
+        System.out.println("**************************************************************");
+        System.out.println("Let's do a practice round for you to understand the mechanics.");
+        System.out.println();
 
-
-//        System.out.println("**************************************************************");
-//        System.out.println("Let's do a practice round for you to understand the mechanics.");
-//        System.out.println();
-//
-//        Enemy practiceDummy = new Enemy();
-//        practiceDummy.name = "Practice Dummy";
-//        practiceDummy.health = 5;
-//        practiceDummy.speed = 4;
-//        practiceDummy.strength = 3;
-//
-//        combat(input, hero, practiceDummy);
+        Enemy practiceDummy = new Enemy("Practice Dummy");
+        //create stats randomizer function in Enemy class later (based on level)
+        practiceDummy.setHealth(5);
+        practiceDummy.setSpeed(4);
+        practiceDummy.setStrength(3);
+        combat.combatEncounter(hero, practiceDummy);
     }
 
-//    public int combat() {
+
 //        /*
 //        display user's attributes (health, etc.) and enemy info
 //        display action options

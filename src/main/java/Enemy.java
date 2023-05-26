@@ -1,4 +1,5 @@
 public class Enemy {
+    helpfulTools tools = new helpfulTools();
     private String name;
 
     private int health;
@@ -7,6 +8,10 @@ public class Enemy {
 
     public Enemy(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public int getHealth() {
@@ -31,5 +36,9 @@ public class Enemy {
 
     public int getStrength() {
         return this.strength;
+    }
+
+    public int enemyCombatOption() {
+        return tools.getRandomNumber(4);
     }
 }
