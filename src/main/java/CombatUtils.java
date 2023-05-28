@@ -56,9 +56,9 @@ public class CombatUtils {
                 System.out.println("Both combatants attempt a quick and parry each other's blow.");
             }
         }
-        if (enemyOption == 2) {
-            if ()
-        }
+//        if (enemyOption == 2) {
+//            if ()
+//        }
         if (enemyOption == 3) {
             if (hero.getSpeed() > enemy.getSpeed()) {
                 enemy.setHealth(enemy.getHealth() - (int)(hero.getStrength() * .25));

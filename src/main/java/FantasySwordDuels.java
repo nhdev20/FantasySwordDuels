@@ -28,7 +28,9 @@ public class FantasySwordDuels {
         practiceDummy.setHealth(5);
         practiceDummy.setSpeed(4);
         practiceDummy.setStrength(3);
-        combat.combatEncounter(hero, practiceDummy);
+        practiceDummy.printOutStats();
+        System.out.println(practiceDummy.getName());
+//        combat.combatEncounter(hero, practiceDummy);
     }
 
     public void welcomeAndNameSetting(Scanner input, userHero hero) {

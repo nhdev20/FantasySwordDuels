@@ -1,53 +1,12 @@
-public class Enemy {
+public class Enemy extends Character{
     helpfulTools tools = new helpfulTools();
+
     private String name;
-
-    private int health;
-    private int speed;
-    private int strength;
-
-    private int armor = strength / 2;
-
     public Enemy(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int getSpeed() {
-        return this.speed;
-    }
-
-    public int getStrength() {
-        return this.strength;
+        this.setName(name);
     }
 
     public int enemyCombatOption() {
         return tools.getRandomNumber(4);
-    }
-
-    public int getArmor() {
-        return this.armor;
-    }
-    public double damageReductionPercentage() {
-        return (armor * 5) / 100.0;
     }
 }
