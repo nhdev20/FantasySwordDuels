@@ -4,6 +4,10 @@ public class CombatUtils {
 
     helpfulTools tools = new helpfulTools();
     Scanner input = new Scanner(System.in);
+
+    private final double HEAVY_ATTACK_STR_PERC_DAM = .5;
+    private final double QUICK_ATTACK_STR_PERC_DAM = .25;
+
     public void combatEncounter(userHero hero, Enemy enemy) {
         System.out.println("COMBAT");
         System.out.println("You have " + hero.getHealth() + "HP");
@@ -45,32 +49,47 @@ public class CombatUtils {
     public void quickAttack(userHero hero, Enemy enemy, int enemyOption) {
         if (enemyOption == 1) {
             if (hero.getSpeed() > enemy.getSpeed()) {
-                enemy.setHealth(enemy.getHealth() - (int)(hero.getStrength() * .25));
-                System.out.println(hero.getName() + " lands a quick attack for " + (int)(hero.getStrength() * .25) + " damage!");
-//                System.out.println(enemy.getName() + "'s health is " + enemy.getHealth() + ".");
+                int enemyDamageTaken = (int)(hero.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(hero.getName() + " lands a quick attack for " + enemyDamageTaken + " damage!");
             } else if (enemy.getSpeed() > hero.getSpeed()) {
-                hero.setHealth(hero.getHealth() - (int)(enemy.getStrength() * .25));
-                System.out.println(enemy.getName() + " lands a quick attack for " + (int)(enemy.getStrength() * .25) + " damage!");
-//                System.out.println(hero.getName() + "'s health is " + enemy.getHealth() + ".");
+                int heroDamageTaken = (int)(enemy.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+                hero.setHealth(hero.getHealth() - heroDamageTaken);
+                System.out.println(enemy.getName() + " lands a quick attack for " + heroDamageTaken + " damage!");
             } else {
                 System.out.println("Both combatants attempt a quick and parry each other's blow.");
             }
         }
-//        if (enemyOption == 2) {
-//            if ()
-//        }
+        if (enemyOption == 2) {
+            int enemyChanceToIgnore = enemy.getArmor() * 5;
+            boolean doesEnemyIgnore = false;
+            if (tools.getRandomNumber(100) <= enemyChanceToIgnore) {
+                doesEnemyIgnore = true;
+            }
+            if (doesEnemyIgnore) {
+                int heroDamageTaken = (int) (enemy.getStrength() * HEAVY_ATTACK_STR_PERC_DAM);
+                hero.setHealth(hero.getHealth() - heroDamageTaken);
+                System.out.println(enemy.getName() + "'s armor deflects " + hero.getName() + "'s quick attack and strikes with a heavy attack for " + heroDamageTaken + "damage!");
+            } else {
+                int enemyDamageTaken = (int)(hero.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(hero.getName() + " lands a quick attack for " + enemyDamageTaken + "!");
+            }
+        }
         if (enemyOption == 3) {
             if (hero.getSpeed() > enemy.getSpeed()) {
-                enemy.setHealth(enemy.getHealth() - (int)(hero.getStrength() * .25));
-                System.out.println(enemy.getName() + " attempts to block, but " + hero.getName() + " lands a quick attack for " + (int)(hero.getStrength() * .25) + " damage!");
+                int enemyDamageTaken = (int)(hero.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(enemy.getName() + " attempts to block, but " + hero.getName() + " lands a quick attack for " + enemyDamageTaken + " damage!");
             } else {
                 System.out.println(enemy.getName() + "Successfully blocks " + hero.getName() + "'s attack.");
             }
         }
         if (enemyOption == 4) {
             if (hero.getSpeed() > enemy.getSpeed()) {
-                enemy.setHealth(enemy.getHealth() - (int)(hero.getStrength() * .25));
-                System.out.println(enemy.getName() + " attempts to dodge, but " + hero.getName() + " lands a quick attack for " + (int)(hero.getStrength() * .25) + " damage!");
+                int enemyDamageTaken = (int)(hero.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(enemy.getName() + " attempts to dodge, but " + hero.getName() + " lands a quick attack for " + enemyDamageTaken + " damage!");
             } else {
                 System.out.println(enemy.getName() + "Successfully dodges " + hero.getName() + "'s attack.");
             }
@@ -80,12 +99,25 @@ public class CombatUtils {
 
     public void heavyAttack(userHero hero, Enemy enemy, int enemyOption) {
         if (enemyOption == 1) {
-
+            int heroChanceToIgnore = hero.getArmor() * 5;
+            boolean doesHeroIgnore = false;
+            if (tools.getRandomNumber(100) <= heroChanceToIgnore) {
+                doesHeroIgnore = true;
+            }
+            if (doesHeroIgnore) {
+                int enemyDamageTaken = (int) (hero.getStrength() * HEAVY_ATTACK_STR_PERC_DAM);
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(hero.getName() + "'s armor deflects " + enemy.getName() + "'s quick attack and strikes with a heavy attack for " + enemyDamageTaken + "damage!");
+            } else {
+                int heroDamageTaken = (int)(enemy.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+                hero.setHealth(hero.getHealth() - heroDamageTaken);
+                System.out.println(enemy.getName() + " lands a quick attack for " + heroDamageTaken + "!");
+            }
         }
         if (enemyOption == 2) {
-            int heroDamageTaken = (int) (enemy.getStrength() * (1 - hero.damageReductionPercentage()));
+            int heroDamageTaken = (int) (enemy.getStrength() * HEAVY_ATTACK_STR_PERC_DAM);
             hero.setHealth(hero.getHealth() - heroDamageTaken);
-            int enemyDamageTaken = (int) (hero.getStrength() * (1 - enemy.damageReductionPercentage()));
+            int enemyDamageTaken = (int) (hero.getStrength() * HEAVY_ATTACK_STR_PERC_DAM);
             enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
             System.out.println("Both combatants use a heavy attack. " + hero.getName() + " hits for " + enemyDamageTaken + ". " + enemy.getName() + " hits for " + heroDamageTaken + ". ");
         }
@@ -93,8 +125,9 @@ public class CombatUtils {
             System.out.println(enemy.getName() + " blocks " + hero.getName() + "'s heavy attack.");
         }
         if (enemyOption == 4) {
-            hero.setHealth(hero.getHealth() - (int)(enemy.getStrength() * .25));
-            System.out.println(hero.getName() + " attempts a heavy attack, but " + enemy.getName() + " dodges and lands an opportunistic quick attack!");
+            int heroDamageTaken = (int)(enemy.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
+            hero.setHealth(hero.getHealth() - heroDamageTaken);
+            System.out.println(hero.getName() + " attempts a heavy attack, but " + enemy.getName() + " dodges and lands an opportunistic quick attack for " + heroDamageTaken + "damage!");
         }
     }
 
