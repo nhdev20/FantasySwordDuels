@@ -1,8 +1,19 @@
+package fsd;
+
+import fsd.Character;
+
 import java.util.Scanner;
 
 public class userHero extends Character {
 
     Scanner input = new Scanner(System.in);
+
+    private int baseHealth;
+
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
     public void attributeSelection() {
         System.out.println("\n***********ATTRIBUTE SELECTION***********\n");
         boolean canContinue = false;
@@ -64,6 +75,7 @@ public class userHero extends Character {
             if (response.equals("c")) {
                 canContinue = true;
                 this.setHealth(hpAddition);
+                this.baseHealth = hpAddition;
                 this.setSpeed(speedAddition);
                 this.setStrength(strengthAddition);
             }

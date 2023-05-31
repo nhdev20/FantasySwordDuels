@@ -1,3 +1,5 @@
+package fsd;
+
 import java.util.Scanner;
 
 public class Character {
@@ -5,7 +7,6 @@ public class Character {
     private int health;
     private int speed;
     private int strength;
-    private int armor = strength / 2;
 
     public void setName(String name) {
         this.name = name;
@@ -40,14 +41,14 @@ public class Character {
     }
 
     public int getArmor() {
-        return this.armor;
+        return this.strength / 2;
     }
 
     public double damageReductionPercentage() {
-        return (armor * 5) / 100.0;
+        return (getArmor() * 5) / 100.0;
     }
 
-    public void printOutStats() {
-        System.out.println("Health: " + this.health + "\nSpeed: " + this.speed + "\nStrength: " + this.strength);
+    public void stat() {
+        System.out.println("HP: " + this.health + "| SPD: " + this.speed + "| STR: " + this.strength + "| ARM: " + this.getArmor());
     }
 }

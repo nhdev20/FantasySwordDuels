@@ -1,3 +1,5 @@
+package fsd;
+
 import java.util.Scanner;
 
 public class CombatUtils {
@@ -10,13 +12,19 @@ public class CombatUtils {
 
     public void combatEncounter(userHero hero, Enemy enemy) {
         System.out.println("COMBAT");
-        System.out.println("You have " + hero.getHealth() + "HP");
         System.out.println("You are fighting a " + enemy.getName() + "!");
-//
-//        while(hero.getHealth() > 0 && enemy.getHealth() > 0) {
-//
-//        }
-        roundResolve(hero, enemy, selectCombatOption(), enemy.enemyCombatOption());
+
+        while(hero.getHealth() > 0 && enemy.getHealth() > 0) {
+            hero.stat();
+            enemy.stat();
+            roundResolve(hero, enemy, selectCombatOption(), enemy.enemyCombatOption());
+        }
+
+        if (hero.getHealth() <= 0) {
+            System.out.println(hero.getName() + " has fallen in battle.");
+        } else {
+            System.out.println(hero.getName() + "has slain " + enemy.getName() + " and continues on.");
+        }
 
     }
     public int selectCombatOption() {
@@ -31,6 +39,7 @@ public class CombatUtils {
     }
 
     public void roundResolve(userHero hero, Enemy enemy, int heroOption, int enemyOption) {
+        System.out.println("in round resolve, hero option: " + heroOption + " enemy option: " + enemyOption);
 
         if (heroOption == 1) {
             quickAttack(hero, enemy, enemyOption);
@@ -91,7 +100,7 @@ public class CombatUtils {
                 enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
                 System.out.println(enemy.getName() + " attempts to dodge, but " + hero.getName() + " lands a quick attack for " + enemyDamageTaken + " damage!");
             } else {
-                System.out.println(enemy.getName() + "Successfully dodges " + hero.getName() + "'s attack.");
+                System.out.println(enemy.getName() + " successfully dodges " + hero.getName() + "'s attack.");
             }
         }
 
@@ -127,7 +136,7 @@ public class CombatUtils {
         if (enemyOption == 4) {
             int heroDamageTaken = (int)(enemy.getStrength() * QUICK_ATTACK_STR_PERC_DAM);
             hero.setHealth(hero.getHealth() - heroDamageTaken);
-            System.out.println(hero.getName() + " attempts a heavy attack, but " + enemy.getName() + " dodges and lands an opportunistic quick attack for " + heroDamageTaken + "damage!");
+            System.out.println(hero.getName() + " attempts a heavy attack, but " + enemy.getName() + " dodges and lands an opportunistic quick attack for " + heroDamageTaken + " damage!");
         }
     }
 
@@ -168,10 +177,10 @@ public class CombatUtils {
             System.out.println(enemy.getName() + " attempts a heavy attack, but " + hero.getName() + " dodges and lands an opportunistic quick attack for " + enemyDamageTaken + "damage!");
         }
         if (enemyOption == 3) {
-
+            System.out.println("As " + enemy.getName() + " moves his shield to block, " + hero.getName() + " dodges in anticipation of an attack. Menacing stares continue.");
         }
         if (enemyOption == 4) {
-
+            System.out.println(enemy.getName() + " and " + hero.getName() + " both dodge away from each other. Could they be dance battling?");
         }
     }
 }

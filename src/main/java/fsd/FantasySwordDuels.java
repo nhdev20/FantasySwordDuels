@@ -1,3 +1,5 @@
+package fsd;
+
 import java.util.Scanner;
 
 public class FantasySwordDuels {
@@ -17,7 +19,7 @@ public class FantasySwordDuels {
 
         hero.attributeSelection();
 
-        hero.printOutStats();
+        hero.stat();
 
         System.out.println("**************************************************************");
         System.out.println("Let's do a practice round for you to understand the mechanics.");
@@ -28,9 +30,8 @@ public class FantasySwordDuels {
         practiceDummy.setHealth(5);
         practiceDummy.setSpeed(4);
         practiceDummy.setStrength(3);
-        practiceDummy.printOutStats();
         System.out.println(practiceDummy.getName());
-//        combat.combatEncounter(hero, practiceDummy);
+        combat.combatEncounter(hero, practiceDummy);
     }
 
     public void welcomeAndNameSetting(Scanner input, userHero hero) {

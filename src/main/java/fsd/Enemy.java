@@ -1,4 +1,8 @@
-public class Enemy extends Character{
+package fsd;
+
+import fsd.Character;
+
+public class Enemy extends Character {
     helpfulTools tools = new helpfulTools();
 
     private String name;
