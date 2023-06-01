@@ -15,23 +15,38 @@ public class FantasySwordDuels {
 
         CombatUtils combat = new CombatUtils();
 
-        welcomeAndNameSetting(input, hero);
+        int completedLevels = 0;
 
+        welcomeAndNameSetting(input, hero);
         hero.attributeSelection();
 
-        hero.stat();
+        for (int levelCounter = 1; levelCounter <= 10; levelCounter++) {
+            hero.setHealth(hero.getBaseHealth());
 
-        System.out.println("**************************************************************");
-        System.out.println("Let's do a practice round for you to understand the mechanics.");
-        System.out.println();
+            System.out.println("**************************************************************");
+            System.out.println("************************** Level " + levelCounter + " ***************************");
+            System.out.println();
 
-        Enemy practiceDummy = new Enemy("Practice Dummy");
-        //create stats randomizer function in Enemy class later (based on level)
-        practiceDummy.setHealth(5);
-        practiceDummy.setSpeed(4);
-        practiceDummy.setStrength(3);
-        System.out.println(practiceDummy.getName());
-        combat.combatEncounter(hero, practiceDummy);
+            Enemy enemy = new Enemy(levelCounter);
+            enemy.statRandomizer(levelCounter);
+
+            boolean result = combat.combatEncounter(hero, enemy);
+            if (result) {
+                completedLevels = levelCounter;
+            } else {
+                break;
+            }
+        }
+
+        if (completedLevels == 10) {
+            System.out.println();
+            System.out.println("- - - - - -");
+            System.out.println("Congratulations!!! You completed ALL 10 levels!!!");
+        } else {
+            System.out.println();
+            System.out.println("- - - - - -");
+            System.out.println("You completed " + completedLevels + " of 10 levels. Give it another try!");
+        }
     }
 
     public void welcomeAndNameSetting(Scanner input, userHero hero) {

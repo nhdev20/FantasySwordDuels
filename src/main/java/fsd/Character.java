@@ -2,7 +2,7 @@ package fsd;
 
 import java.util.Scanner;
 
-public class Character {
+abstract class Character {     //make abstract?
     private String name;
     private int health;
     private int speed;
@@ -44,11 +44,22 @@ public class Character {
         return this.strength / 2;
     }
 
-    public double damageReductionPercentage() {
-        return (getArmor() * 5) / 100.0;
+    private final double HEAVY_ATTACK_STR_PERC_DAM = .5;
+    private final double QUICK_ATTACK_STR_PERC_DAM = .25;
+    public int getDamageDealt(String attackType) { //heavy and quick only options
+        if (attackType.equals("heavy")) {
+            return 2 + (int)(strength * HEAVY_ATTACK_STR_PERC_DAM);  //heavy has base modifier of 2
+        }
+        return 1 + (int)(strength * QUICK_ATTACK_STR_PERC_DAM);  //quick has base modifier of 1
     }
+
+//    public double damageReductionPercentage() {
+//        return (getArmor() * 5) / 100.0;
+//    }
 
     public void stat() {
         System.out.println("HP: " + this.health + "| SPD: " + this.speed + "| STR: " + this.strength + "| ARM: " + this.getArmor());
     }
+
+//    abstract void specialMove();
 }
