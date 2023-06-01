@@ -1,12 +1,16 @@
 package fsd;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-abstract class Character {     //make abstract?
+abstract class Character {
     private String name;
     private int health;
     private int speed;
     private int strength;
+
+    //Map
 
     public void setName(String name) {
         this.name = name;
@@ -60,6 +64,8 @@ abstract class Character {     //make abstract?
     public void stat() {
         System.out.println("HP: " + this.health + "| SPD: " + this.speed + "| STR: " + this.strength + "| ARM: " + this.getArmor());
     }
+
+
 
 //    abstract void specialMove();
 }

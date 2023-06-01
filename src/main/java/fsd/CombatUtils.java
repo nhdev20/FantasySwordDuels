@@ -38,7 +38,7 @@ public class CombatUtils {
     }
 
     public void roundResolve(userHero hero, Enemy enemy, int heroOption, int enemyOption) {
-        System.out.println("in round resolve, hero option: " + heroOption + " enemy option: " + enemyOption);
+        System.out.println("Hero option: " + heroOption + " Enemy option: " + enemyOption);
 
         if (heroOption == 1) {
             quickAttack(hero, enemy, enemyOption);
@@ -77,7 +77,7 @@ public class CombatUtils {
             if (doesEnemyIgnore) {
                 int heroDamageTaken = enemy.getDamageDealt("heavy");
                 hero.setHealth(hero.getHealth() - heroDamageTaken);
-                System.out.println(enemy.getName() + "'s armor deflects " + hero.getName() + "'s quick attack and strikes with a heavy attack for " + heroDamageTaken + "damage!");
+                System.out.println(enemy.getName() + "'s armor deflects " + hero.getName() + "'s quick attack and strikes with a heavy attack for " + heroDamageTaken + " damage!");
             } else {
                 int enemyDamageTaken = hero.getDamageDealt("quick");
                 enemy.setHealth(enemy.getHealth() - enemyDamageTaken);

@@ -14,9 +14,10 @@ public class Enemy extends Character {
     }
 
     public void statRandomizer(int currentLevel) {
-        int rand1 = (int)((Math.random() * (5 + currentLevel)) + 1);
-        int rand2 = (int)((Math.random() * (5 + currentLevel)) + 1);
-        int rand3 = (int)((Math.random() * (5 + currentLevel)) + 1);
+//        int rand1 = (int)((Math.random() * (5 + currentLevel)) + 1);
+        int rand1 = (int)((Math.random() * 5) + 1);
+        int rand2 = (int)((Math.random() * 5) + 1);
+        int rand3 = (int)((Math.random() * 5) + 1);
 
         setHealth(getHealth() + rand1);  //AKA current health + random integer between 1 and (5 + current level)
         setSpeed(getSpeed() + rand2);

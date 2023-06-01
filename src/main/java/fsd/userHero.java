@@ -18,13 +18,13 @@ public class userHero extends Character {
         System.out.println("\n***********ATTRIBUTE SELECTION***********\n");
         boolean canContinue = false;
         while (!canContinue) {
-            System.out.println("You have 15 attribute points to distribute among three attributes: Health, Speed, and Strength");
+            System.out.println("You have 20 attribute points to distribute among three attributes: Health, Speed, and Strength");
             System.out.println("Health determines how much damage you can take and continue forward.");
             System.out.println("Speed determines how quickly you can move out of the way or perform a quick attack.");
             System.out.println("Strength determines your damage and armor protection.");
             System.out.println("\n<You must put at least one point in each category.>\n");
 
-            int distributeTotal = 15;
+            int distributeTotal = 20;
             boolean inBounds = false;
             int hpAddition = 0;
 
@@ -82,4 +82,14 @@ public class userHero extends Character {
         }
     }
 
+    public void statUpgrade() {
+
+    }
+
+    public void specialMoveSelection() {
+        //create specialMoves Map through Character class inheritance
+        //display three options from list of eleven, select one
+        //store in Map<String name, SpecialMove object that executes code> (one large Map that contains all options and then individual Map per character)
+        //create SpecialMove object
+    }
 }
