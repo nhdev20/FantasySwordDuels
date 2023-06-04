@@ -14,6 +14,14 @@ public class userHero extends Character {
         return baseHealth;
     }
 
+    //List of Special Moves
+    //getter
+    //addTo
+
+    //Sword object
+    //getter
+    //setter
+
     public void attributeSelection() {
         System.out.println("\n***********ATTRIBUTE SELECTION***********\n");
         boolean canContinue = false;
@@ -82,14 +90,16 @@ public class userHero extends Character {
         }
     }
 
-    public void statUpgrade() {
+    public void postLevel(int completedLevel) {
+        //if level 2, additional 5 points to distribute
+        //if level 4, pick an upgraded sword (add'l 5 points boost)
+        //if level 6 or 8, receive a special move
 
     }
 
     public void specialMoveSelection() {
-        //create specialMoves Map through Character class inheritance
-        //display three options from list of eleven, select one
-        //store in Map<String name, SpecialMove object that executes code> (one large Map that contains all options and then individual Map per character)
-        //create SpecialMove object
+        //print out options from List (only 2)
+        //select option
+        //apply
     }
 }

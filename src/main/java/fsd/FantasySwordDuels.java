@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class FantasySwordDuels {
     Scanner input = new Scanner(System.in);
 
+    //List of swords
+
     public static void main(String[] args) {
         FantasySwordDuels fsdApp = new FantasySwordDuels();
         fsdApp.run();
@@ -33,6 +35,7 @@ public class FantasySwordDuels {
             boolean result = combat.combatEncounter(hero, enemy);
             if (result) {
                 completedLevels = levelCounter;
+                //hero.postLevel(completedLevels);
             } else {
                 break;
             }

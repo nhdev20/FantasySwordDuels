@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 abstract class Character {
+    helpfulTools tools = new helpfulTools();
     private String name;
     private int health;
     private int speed;
     private int strength;
 
-    //Map
+    //List of special move objects (2)
 
     public void setName(String name) {
         this.name = name;
@@ -57,9 +58,10 @@ abstract class Character {
         return 1 + (int)(strength * QUICK_ATTACK_STR_PERC_DAM);  //quick has base modifier of 1
     }
 
-//    public double damageReductionPercentage() {
-//        return (getArmor() * 5) / 100.0;
-//    }
+    public boolean damageReductionCheck() {
+        int reductionChance = getArmor() * 5;
+        return (tools.getRandomNumber(100) <= reductionChance) ? true : false;
+    }
 
     public void stat() {
         System.out.println("HP: " + this.health + "| SPD: " + this.speed + "| STR: " + this.strength + "| ARM: " + this.getArmor());
