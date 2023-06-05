@@ -39,10 +39,14 @@ public class userHero extends Character {
             while (!inBounds) {
                 System.out.print("How many points would you like to place in Health? ");
                 String hpAdd = input.nextLine();
-                hpAddition = Integer.parseInt(hpAdd);
-                distributeTotal -= hpAddition;
-                if (hpAddition >=0 && distributeTotal >= 0) {
-                    inBounds = true;
+                try {
+                    hpAddition = Integer.parseInt(hpAdd);
+                    distributeTotal -= hpAddition;
+                    if (hpAddition >=0 && distributeTotal >= 0) {
+                        inBounds = true;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println(hpAdd + " is not a number - please enter a number.");
                 }
             }
 
@@ -53,10 +57,14 @@ public class userHero extends Character {
                 System.out.println("You have " + distributeTotal + " distribution points remaining.");
                 System.out.print("How many points would you like to place in Speed? ");
                 String speedAdd = input.nextLine();
-                speedAddition = Integer.parseInt(speedAdd);
-                distributeTotal -= speedAddition;
-                if (speedAddition >=0 && distributeTotal >= 0) {
-                    inBounds = true;
+                try {
+                    speedAddition = Integer.parseInt(speedAdd);
+                    distributeTotal -= speedAddition;
+                    if (speedAddition >=0 && distributeTotal >= 0) {
+                        inBounds = true;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println(speedAdd + " is not a number - please enter a number.");
                 }
             }
 
@@ -67,11 +75,16 @@ public class userHero extends Character {
                 System.out.println("You have " + distributeTotal + " distribution points remaining.");
                 System.out.print("How many points would you like to place in Strength? ");
                 String strengthAdd = input.nextLine();
-                strengthAddition = Integer.parseInt(strengthAdd);
-                distributeTotal -= strengthAddition;
-                if (strengthAddition >=0 && distributeTotal >= 0) {
-                    inBounds = true;
+                try {
+                    strengthAddition = Integer.parseInt(strengthAdd);
+                    distributeTotal -= strengthAddition;
+                    if (strengthAddition >=0 && distributeTotal >= 0) {
+                        inBounds = true;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println(strengthAdd + " is not a number - please enter a number.");
                 }
+
             }
 
             System.out.println("\n" + this.getName() + ", you have opted to disseminate your points as follows:");
