@@ -3,7 +3,8 @@ package fsd;
 import java.util.Scanner;
 
 public class CombatUtils {
-
+//static?
+    //attack/move classes
     helpfulTools tools = new helpfulTools();
     Scanner input = new Scanner(System.in);
 
@@ -77,7 +78,7 @@ public class CombatUtils {
                     heroDamageTaken = enemy.getDamageDealt("quick") / 2;
                     armorUse = true;
                 } else {
-                    heroDamageTaken = hero.getDamageDealt("quick");
+                    heroDamageTaken = enemy.getDamageDealt("quick");
                 }
                 hero.setHealth(hero.getHealth() - heroDamageTaken);
                 System.out.println(enemy.getName() + " lands a quick attack for " + heroDamageTaken + " damage!");
@@ -101,7 +102,7 @@ public class CombatUtils {
                     heroDamageTaken = enemy.getDamageDealt("heavy") / 2;
                     armorUse = true;
                 } else {
-                    heroDamageTaken = hero.getDamageDealt("heavy");
+                    heroDamageTaken = enemy.getDamageDealt("heavy");
                 }
                 hero.setHealth(hero.getHealth() - heroDamageTaken);
                 System.out.println(enemy.getName() + "'s armor deflects " + hero.getName() + "'s quick attack and strikes with a heavy attack for " + heroDamageTaken + " damage!");
@@ -167,26 +168,70 @@ public class CombatUtils {
     public void heavyAttack(userHero hero, Enemy enemy, int enemyOption) {
         if (enemyOption == 1) {
             int heroChanceToIgnore = hero.getArmor() * 5;
-            boolean doesHeroIgnore = false;
+            boolean heroIgnore = false;
             if (tools.getRandomNumber(100) <= heroChanceToIgnore) {
-                doesHeroIgnore = true;
+                heroIgnore = true;
             }
-            if (doesHeroIgnore) {
-                int enemyDamageTaken = hero.getDamageDealt("heavy");
+            if (heroIgnore) {
+                int enemyDamageTaken = 0;
+                boolean armorUse = false;
+                if (enemy.damageReductionCheck()) {
+                    enemyDamageTaken = hero.getDamageDealt("heavy") / 2;
+                    armorUse = true;
+                } else {
+                    enemyDamageTaken = hero.getDamageDealt("heavy");
+                }
                 enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
                 System.out.println(hero.getName() + "'s armor deflects " + enemy.getName() + "'s quick attack and strikes with a heavy attack for " + enemyDamageTaken + " damage!");
+                if (armorUse) {
+                    System.out.println("(" + enemy.getName() + "'s armor helped buffer the blow.)");
+                }
             } else {
-                int heroDamageTaken = enemy.getDamageDealt("quick");
+                int heroDamageTaken = 0;
+                boolean armorUse = false;
+                if (hero.damageReductionCheck()) {
+                    heroDamageTaken = enemy.getDamageDealt("quick") / 2;
+                    armorUse = true;
+                } else {
+                    heroDamageTaken = enemy.getDamageDealt("quick");
+                }
                 hero.setHealth(hero.getHealth() - heroDamageTaken);
                 System.out.println(enemy.getName() + " lands a quick attack for " + heroDamageTaken + "!");
+                if (armorUse) {
+                    System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
+                }
             }
         }
         if (enemyOption == 2) {
-            int heroDamageTaken = enemy.getDamageDealt("heavy");
-            hero.setHealth(hero.getHealth() - heroDamageTaken);
-            int enemyDamageTaken = hero.getDamageDealt("heavy");
+            System.out.println("Both combatants use a heavy attack.");
+            //Enemy takes damage
+            int enemyDamageTaken = 0;
+            boolean armorUse = false;
+            if (enemy.damageReductionCheck()) {
+                enemyDamageTaken = hero.getDamageDealt("heavy") / 2;
+                armorUse = true;
+            } else {
+                enemyDamageTaken = hero.getDamageDealt("heavy");
+            }
             enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
-            System.out.println("Both combatants use a heavy attack. " + hero.getName() + " hits for " + enemyDamageTaken + ". " + enemy.getName() + " hits for " + heroDamageTaken + ". ");
+            if (armorUse) {
+                System.out.println("(" + enemy.getName() + "'s armor helped buffer the blow.)");
+            }
+            //Hero takes damage
+            int heroDamageTaken = 0;
+            armorUse = false;
+            if (hero.damageReductionCheck()) {
+                heroDamageTaken = enemy.getDamageDealt("heavy") / 2;
+                armorUse = true;
+            } else {
+                heroDamageTaken = enemy.getDamageDealt("heavy");
+            }
+            hero.setHealth(hero.getHealth() - heroDamageTaken);
+            if (armorUse) {
+                System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
+            }
+            //Combined info output message
+            System.out.println(hero.getName() + " hits for " + enemyDamageTaken + ". " + enemy.getName() + " hits for " + heroDamageTaken + ". ");
         }
         if (enemyOption == 3) {
             int enemyDamageTaken = (hero.getDamageDealt("heavy")) / 2;

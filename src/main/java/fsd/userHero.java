@@ -32,7 +32,7 @@ public class userHero extends Character {
         while (!canContinue) {
             System.out.println();
             System.out.println("You have 20 attribute points to distribute among three attributes: Health, Speed, and Strength");
-            System.out.println("<You must put at least 2 points in each category.>");
+            System.out.println("<You must put at least 1 point in each category.>");
 
             int distributeTotal = 20;
 
@@ -51,7 +51,7 @@ public class userHero extends Character {
                         healthAddition = Integer.parseInt(healthAdd);
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println(healthAdd + " is not a number - please enter a number.");
+                        System.out.println("\'" + healthAdd + "\' is not a number - please enter a number.");
                     }
                 }
 
@@ -61,8 +61,8 @@ public class userHero extends Character {
                     healthAdd = "";
                     continue;
                 }
-                if (distributeTotal - healthAddition <= 3) {
-                    System.out.println("You overspent your distribution points. Remember, you need at least two points for each attribute.");
+                if (distributeTotal - healthAddition <= 2) {
+                    System.out.println("You overspent your distribution points. Remember, you need at least one point for each attribute.");
                     healthAddition = 0;
                     healthAdd = "";
                     continue;
@@ -86,7 +86,7 @@ public class userHero extends Character {
                         speedAddition = Integer.parseInt(speedAdd);
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println(speedAdd + " is not a number - please enter a number.");
+                        System.out.println("\'" + speedAdd + "\' is not a number - please enter a number.");
                     }
                 }
 
@@ -97,7 +97,7 @@ public class userHero extends Character {
                     continue;
                 }
                 if (distributeTotal - speedAddition <= 1) {
-                    System.out.println("You overspent your distribution points. Remember, you need at least two points for each attribute.");
+                    System.out.println("You overspent your distribution points. Remember, you need at least one point for each attribute.");
                     speedAddition = 0;
                     speedAdd = "";
                     continue;
@@ -121,7 +121,7 @@ public class userHero extends Character {
                         strengthAddition = Integer.parseInt(strengthAdd);
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println(strengthAdd + " is not a number - please enter a number.");
+                        System.out.println("\'" + strengthAdd + "\' is not a number - please enter a number.");
                     }
                 }
 
@@ -157,7 +157,7 @@ public class userHero extends Character {
                 if (response.equals("c") || response.equals("r")) {
                     break;
                 }
-                System.out.println(response + " is not (c) or (r) - please select one to continue.");
+                System.out.println("\'" + response + "\' is not (c) or (r) - please select one to continue.");
             }
 
             if (response.equals("c")) {
