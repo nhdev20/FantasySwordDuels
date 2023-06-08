@@ -1,10 +1,20 @@
 package fsd;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CombatUtils {
 //static?
     //attack/move classes
+
+    List<SpecialMove> listOfSpecialMoves = new ArrayList<>();
+    HealMove heal = new HealMove("Heal");
+//send object to method wherein it is accessed and manipulated
+
+
+
+
     helpfulTools tools = new helpfulTools();
     Scanner input = new Scanner(System.in);
 
