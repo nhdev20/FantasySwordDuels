@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 abstract class Character {
-    helpfulTools tools = new helpfulTools();
+    Tools tools = new Tools();
     private String name;
     private int health;
     private int speed;
@@ -68,6 +68,4 @@ abstract class Character {
     }
 
 
-
-//    abstract void specialMove();
 }

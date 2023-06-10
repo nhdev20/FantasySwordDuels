@@ -3,7 +3,7 @@ package fsd;
 import fsd.Character;
 
 public class Enemy extends Character {
-    helpfulTools tools = new helpfulTools();
+    Tools tools = new Tools();
     private String name;
 
     public Enemy(int currentLevel) {
