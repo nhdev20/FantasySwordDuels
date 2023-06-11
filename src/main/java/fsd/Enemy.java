@@ -28,7 +28,7 @@ public class Enemy extends Character {
         return tools.getRandomNumber(4);
     }
 
-    String[] enemyNamesByLevel = new String[] {"Artego", "Boris", "Calan", "Doron", "Ernet", "Falon", "Gratz", "Hortia", "Ingito", "Jilo"};
+    String[] enemyNamesByLevel = new String[] {"Artego", "Boris", "Calan", "Doron", "Ernet", "Falon", "Gratz", "Hortia", "Ignito", "Jilo"};
 
 
 }

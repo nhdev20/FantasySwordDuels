@@ -4,6 +4,8 @@ import fsd.Character;
 
 import java.util.*;
 
+import static fsd.util.ConsoleUtility.*;
+
 public class Hero extends Character {
     private int baseHealth;
     private int healCount;
@@ -31,15 +33,15 @@ public class Hero extends Character {
 
     public void attributeSelection(Scanner input) {
         System.out.println("\n***********ATTRIBUTE SELECTION***********\n");
-        System.out.println("HEALTH determines how much damage you can take and continue forward.");
-        System.out.println("SPEED determines how quickly you can move out of the way or perform a quick attack.");
-        System.out.println("STRENGTH determines your damage and armor protection.");
+        System.out.println(ANSI_UNDERLINE + "HEALTH" + ANSI_RESET + " determines how much damage you can take and continue forward.");
+        System.out.println(ANSI_UNDERLINE + "SPEED" + ANSI_RESET + " determines how quickly you can move out of the way or perform a quick attack.");
+        System.out.println(ANSI_UNDERLINE + "STRENGTH" + ANSI_RESET + " determines your damage and armor protection.");
 
         boolean canContinue = false;
         while (!canContinue) {
             System.out.println();
-            System.out.println("You have 20 attribute points to distribute among three attributes: Health, Speed, and Strength");
-            System.out.println("<You must put at least 1 point in each category.>");
+            System.out.println("You have " + ANSI_BOLD + "20" + ANSI_RESET + " attribute points to distribute among the three attributes.");
+            System.out.println(ANSI_LIGHT_GRAY + "(You must put at least 1 point in each category.)\n" + ANSI_RESET);
 
             int distributeTotal = 20;
 
@@ -49,7 +51,7 @@ public class Hero extends Character {
             String healthAdd = "";
 
             while (!inBounds) {
-                System.out.println("You have " + distributeTotal + " distribution points remaining.");
+                System.out.println("You have " + distributeTotal + " distribution points.");
                 System.out.print("How many points would you like to place in Health? ");
 
                 while (true) {
@@ -180,22 +182,28 @@ public class Hero extends Character {
     public int postLevelUpgrade(int completedLevel, Scanner input) {
         int numOfCombatOptions = 4;
         if (completedLevel == 2) {
-            System.out.println("\nYou have grown through your victories, earning 5 additional attribute points to distribute!");
+            System.out.println(ANSI_MAGENTA + "\nYou have grown through your victories, earning 5 additional attribute points to distribute!" + ANSI_RESET);
             System.out.println("--------------------------------");
             additionalPointsUpgrade(input);
         }
         if (completedLevel == 4) {
-            System.out.println("\nThe local Forge Master has crafted a new sword for you, which increases your Speed by 2 and your Strength by 3!\n");
+            System.out.println(ANSI_MAGENTA + "\nThe local Forge Master has crafted a new sword for you, which increases your Speed by 2 and your Strength by 3!\n" + ANSI_RESET);
             setSpeed(getSpeed() + 2);
             setStrength(getStrength() + 3);
         }
         if (completedLevel == 6) {
-            System.out.println("\nYou have learned a Special Move called Heal, which allows you to heal yourself to full capacity once per level!\n");
+            System.out.println(ANSI_MAGENTA + "\nYou have learned a Special Move called " + ANSI_GREEN + "Heal" + ANSI_MAGENTA + ", which allows you to heal yourself to full capacity once per level!\n" + ANSI_RESET);
+            numOfCombatOptions = 5;
+        }
+        if (completedLevel == 7) {
             numOfCombatOptions = 5;
         }
         if (completedLevel == 8) {
-            System.out.println("\nYou have learned a Special Move called Fiery Strike. As you prepare to attack, you mutter an incantation which sets your blade on fire! Your attack automatically causes 10 damage to your enemy! " +
-                    "It can be used once per turn\n");
+            System.out.println(ANSI_MAGENTA + "\nYou have learned a Special Move called " + ANSI_RED + "Fiery Strike" + ANSI_MAGENTA + ". As you prepare to attack, you utter an incantation which sets your blade on fire! Your attack automatically causes 10 damage to your enemy! " +
+                    "It can be used once per level.\n" + ANSI_RESET);
+            numOfCombatOptions = 6;
+        }
+        if (completedLevel == 9 || completedLevel == 10) {
             numOfCombatOptions = 6;
         }
         return numOfCombatOptions;
