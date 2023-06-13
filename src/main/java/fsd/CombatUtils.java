@@ -231,7 +231,13 @@ public class CombatUtils {
                     System.out.println("(" + enemy.getName() + "'s armor helped buffer the blow.)");
                 }
             } else {
-                System.out.println(enemy.getName() + " successfully dodges " + hero.getName() + "'s attack.");
+                if (tools.getRandomNumber(100) <= 5) {
+                    int enemyDamageTaken = hero.getDamageDealt("quick");
+                    enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                    System.out.println(enemy.getName() + " attempts to dodge, but trips. " + hero.getName() + " lands a quick attack for " + enemyDamageTaken + " damage!");
+                } else {
+                    System.out.println(enemy.getName() + " successfully dodges " + hero.getName() + "'s attack.");
+                }
             }
         }
     }
@@ -302,7 +308,7 @@ public class CombatUtils {
                 System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
             }
             //Combined info output message
-            System.out.println(hero.getName() + " strikes for " + enemyDamageTaken + "damage. " + enemy.getName() + " strikes for " + heroDamageTaken + "damage.");
+            System.out.println(hero.getName() + " strikes for " + enemyDamageTaken + " damage. " + enemy.getName() + " strikes for " + heroDamageTaken + " damage.");
         }
         if (enemyOption == 3) {
             int enemyDamageTaken = 0;
@@ -321,19 +327,26 @@ public class CombatUtils {
             }
         }
         if (enemyOption == 4) {
-            int heroDamageTaken = 0;
-            boolean armorUse = false;
-            if (hero.damageReductionCheck()) {
-                heroDamageTaken = enemy.getDamageDealt("quick") / 2;
-                armorUse = true;
+            if (tools.getRandomNumber(100) <= 5) {
+                int enemyDamageTaken = hero.getDamageDealt("heavy");
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(enemy.getName() + " attempts to dodge, but trips. " + hero.getName() + " lands a heavy attack for " + enemyDamageTaken + " damage!");
             } else {
-                heroDamageTaken = enemy.getDamageDealt("quick");
+                int heroDamageTaken = 0;
+                boolean armorUse = false;
+                if (hero.damageReductionCheck()) {
+                    heroDamageTaken = enemy.getDamageDealt("quick") / 2;
+                    armorUse = true;
+                } else {
+                    heroDamageTaken = enemy.getDamageDealt("quick");
+                }
+                hero.setHealth(hero.getHealth() - heroDamageTaken);
+                System.out.println(hero.getName() + " attempts a heavy attack, but " + enemy.getName() + " dodges and lands an opportunistic quick attack for " + heroDamageTaken + " damage!");
+                if (armorUse) {
+                    System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
+                }
             }
-            hero.setHealth(hero.getHealth() - heroDamageTaken);
-            System.out.println(hero.getName() + " attempts a heavy attack, but " + enemy.getName() + " dodges and lands an opportunistic quick attack for " + heroDamageTaken + " damage!");
-            if (armorUse) {
-                System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
-            }
+
         }
     }
 
@@ -398,23 +411,36 @@ public class CombatUtils {
                     System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
                 }
             } else {
-                System.out.println(hero.getName() + " successfully dodges " + enemy.getName() + "'s attack.");
+                if (tools.getRandomNumber(100) <= 5) {
+                    int heroDamageTaken = enemy.getDamageDealt("quick");
+                    hero.setHealth(hero.getHealth() - heroDamageTaken);
+                    System.out.println(hero.getName() + " attempts to dodge, but trips. " + enemy.getName() + " lands a quick attack for " + heroDamageTaken + " damage!");
+                } else {
+                    System.out.println(hero.getName() + " successfully dodges " + enemy.getName() + "'s attack.");
+                }
             }
         }
         if (enemyOption == 2) {
-            int enemyDamageTaken = 0;
-            boolean armorUse = false;
-            if (enemy.damageReductionCheck()) {
-                enemyDamageTaken = hero.getDamageDealt("quick") / 2;
-                armorUse = true;
+            if (tools.getRandomNumber(100) <= 5) {
+                int heroDamageTaken = enemy.getDamageDealt("heavy");
+                hero.setHealth(hero.getHealth() - heroDamageTaken);
+                System.out.println(hero.getName() + " attempts to dodge, but trips. " + enemy.getName() + " lands a heavy attack for " + heroDamageTaken + " damage!");
             } else {
-                enemyDamageTaken = hero.getDamageDealt("quick");
+                int enemyDamageTaken = 0;
+                boolean armorUse = false;
+                if (enemy.damageReductionCheck()) {
+                    enemyDamageTaken = hero.getDamageDealt("quick") / 2;
+                    armorUse = true;
+                } else {
+                    enemyDamageTaken = hero.getDamageDealt("quick");
+                }
+                enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
+                System.out.println(enemy.getName() + " attempts a heavy attack, but " + hero.getName() + " dodges and lands an opportunistic quick attack for " + enemyDamageTaken + " damage!");
+                if (armorUse) {
+                    System.out.println("(" + enemy.getName() + "'s armor helped buffer the blow.)");
+                }
             }
-            enemy.setHealth(enemy.getHealth() - enemyDamageTaken);
-            System.out.println(enemy.getName() + " attempts a heavy attack, but " + hero.getName() + " dodges and lands an opportunistic quick attack for " + enemyDamageTaken + " damage!");
-            if (armorUse) {
-                System.out.println("(" + enemy.getName() + "'s armor helped buffer the blow.)");
-            }
+
         }
         if (enemyOption == 3) {
             System.out.println("As " + enemy.getName() + " moves his shield to block, " + hero.getName() + " dodges in anticipation of an attack. Menacing stares continue.");

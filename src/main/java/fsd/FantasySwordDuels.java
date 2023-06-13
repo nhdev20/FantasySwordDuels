@@ -28,6 +28,8 @@ public class FantasySwordDuels {
         int completedLevels = 0;
 
         welcomeAndNameSetting(input, hero);
+
+        System.out.println(ANSI_UNDERLINE + "\nHow Combat Resolves:" + ANSI_RESET);
         rulesExplanation();
         hero.attributeSelection(input);
 
@@ -42,6 +44,7 @@ public class FantasySwordDuels {
             enemy.statRandomizer(levelCounter);
 
             boolean result = combat.combatEncounter(hero, enemy, input, user);
+
             if (result) {
                 completedLevels = levelCounter;
                 int updatedNumOfCombatOptions = hero.postLevelUpgrade(completedLevels, input);
@@ -66,7 +69,7 @@ public class FantasySwordDuels {
 
         LocalDateTime now = LocalDateTime.now();
         user.setEndOfPlay(now);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
         String formattedDate = now.format(formatter);
         user.setTimeAndDateAtEndOfPlay(formattedDate);
 
@@ -84,18 +87,39 @@ public class FantasySwordDuels {
         System.out.println("Welcome to Fantasy Sword Duels!");
         System.out.print(ANSI_RESET);
         System.out.print("What is your name? ");
-        String name = input.nextLine();
+        String name = "";
+        while (true) {
+            name = input.nextLine();
+            if (name != null) {
+                break;
+            }
+            System.out.println("You did not enter anything, please enter your name.");
+        }
         hero.setName(name);
         System.out.println("Greetings, " + hero.getName() + "!");
     }
 
     public void rulesExplanation() {
-        //here I will explain the combat logic/rules
-        //use ANSI
+        System.out.println(ANSI_BOLD + "Quick Attack vs Quick Attack" + ANSI_RESET + " - the higher " + ANSI_LIGHT_GREEN + "Speed" + ANSI_RESET + " value lands the attack.");
+        System.out.println(ANSI_BOLD + "Quick Attack vs Heavy Attack" + ANSI_RESET + " - Quick Attack usually wins, but there is a chance, which increases based on "
+                + ANSI_MAGENTA + "Strength" + ANSI_RESET + ", that the armor will deflect the Quick Attack and the Heavy Attack will then land.");
+        System.out.println(ANSI_BOLD + "Quick Attack vs Block" + ANSI_RESET + " - Block stops Quick Attack, and there is a chance that a counter Quick Attack might occur.");
+        System.out.println(ANSI_BOLD + "Quick Attack vs Dodge" + ANSI_RESET + " - if " + ANSI_LIGHT_GREEN + "Speed" + ANSI_RESET + " of the Quick Attack is higher, the attack lands.");
+        System.out.println();
+        System.out.println(ANSI_BOLD + "Heavy Attack vs Heavy Attack" + ANSI_RESET + " - both attacks land.");
+        System.out.println(ANSI_BOLD + "Heavy Attack vs Block" + ANSI_RESET + " - Block reduces the damage of Heavy Attack.");
+        System.out.println(ANSI_BOLD + "Heavy Attack vs Dodge" + ANSI_RESET + " - the Heavy Attack misses and a counter Quick Attack occurs.");
+        System.out.println();
+        System.out.println("With " + ANSI_BOLD + "Dodge" + ANSI_RESET + ", there is a small chance that the character might trip. If this occurs and the opponent performed a Quick or Heavy attack, " +
+                "the attack lands for full damage.");
+        System.out.println();
+        System.out.println(ANSI_LIGHT_GRAY + "Armor" + ANSI_RESET + " is calculated based on the " + ANSI_MAGENTA + "Strength" + ANSI_RESET + " attribute." + ANSI_LIGHT_GRAY
+                + " Armor" + ANSI_RESET + " provides a chance that incoming damage will be reduced or prevented.");
+        System.out.println(ANSI_MAGENTA + "Strength" + ANSI_RESET + " is the attribute used in damage calculations.");
     }
 
     public void requestGamerTag(User user) {
-        System.out.print("Would you like your score (highest level completed) to be added to our public scoreboard? (y)es or (n)o: ");
+        System.out.print("\nWould you like your score (highest level completed) to be added to our public scoreboard? (y)es or (n)o: ");
         String yesOrNo = "";
         while (true) {
             yesOrNo = input.nextLine();
