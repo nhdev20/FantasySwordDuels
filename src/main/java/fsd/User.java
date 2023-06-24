@@ -4,20 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class User {
-    private String gamerTag;
     private LocalDateTime endOfPlay;
-    private String timeAndDateAtEndOfPlay;
     private int highestLevelCompleted;
     private Map<String, Integer> attributeDistribution; //key is name of Attribute, value is corresponding int value
     private Map<String, Integer> combatOptionDistribution; //key is name of combat option, value is corresponding number of times used
-
-    public String getGamerTag() {
-        return gamerTag;
-    }
-
-    public void setGamerTag(String gamerTag) {
-        this.gamerTag = gamerTag;
-    }
 
     public LocalDateTime getEndOfPlay() {
         return endOfPlay;
@@ -25,14 +15,6 @@ public class User {
 
     public void setEndOfPlay(LocalDateTime endOfPlay) {
         this.endOfPlay = endOfPlay;
-    }
-
-    public String getTimeAndDateAtEndOfPlay() {
-        return timeAndDateAtEndOfPlay;
-    }
-
-    public void setTimeAndDateAtEndOfPlay(String timeAndDateAtEndOfPlay) {
-        this.timeAndDateAtEndOfPlay = timeAndDateAtEndOfPlay;
     }
 
     public int getHighestLevelCompleted() {
@@ -62,9 +44,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "gamerTag='" + gamerTag + '\'' +
                 ", endOfPlay=" + endOfPlay +
-                ", timeAndDateAtEndOfPlay='" + timeAndDateAtEndOfPlay + '\'' +
                 ", highestLevelCompleted=" + highestLevelCompleted +
                 ", attributeDistribution=" + attributeDistribution +
                 ", combatOptionDistribution=" + combatOptionDistribution +

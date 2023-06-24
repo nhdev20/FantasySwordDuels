@@ -1,23 +1,45 @@
 package fsd;
 
-import fsd.util.ConsoleUtility;
+import fsd.*;
+import fsd.Dao.JdbcRunDao;
+import fsd.Dao.RunDao;
 
+import javax.sql.DataSource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import fsd.Exception.DaoException;
+import fsd.model.Run;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
+import javax.sql.DataSource;
+
 import static fsd.util.ConsoleUtility.*;
 
 public class FantasySwordDuels {
     Scanner input = new Scanner(System.in);
 
+    private final RunDao jdbcRunDao;
+
     public static void main(String[] args) {
 //        ConsoleUtility.demoAll();
-        FantasySwordDuels fsdApp = new FantasySwordDuels();
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/FantasySwordDuels");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres1");
+        FantasySwordDuels fsdApp = new FantasySwordDuels(dataSource);
         fsdApp.run();
     }
+
+    public FantasySwordDuels(DataSource dataSource) {
+        jdbcRunDao = new JdbcRunDao(dataSource);
+    }
+
 
     public void run() {
         Hero hero = new Hero();
@@ -64,14 +86,7 @@ public class FantasySwordDuels {
             System.out.println("You completed " + completedLevels + " of 10 levels. Give it another try!");
         }
 
-        requestGamerTag(user);
-        user.setHighestLevelCompleted(completedLevels);
-
         LocalDateTime now = LocalDateTime.now();
-        user.setEndOfPlay(now);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        String formattedDate = now.format(formatter);
-        user.setTimeAndDateAtEndOfPlay(formattedDate);
 
         Map<String, Integer> attributeDistribution = new HashMap<>();
         attributeDistribution.put("Health", hero.getBaseHealth());
@@ -79,7 +94,12 @@ public class FantasySwordDuels {
         attributeDistribution.put("Strength", hero.getStrength());
         user.setAttributeDistribution(attributeDistribution);
 
-        System.out.println(user.toString());
+        Run currentRun = new Run(now, completedLevels);
+        try {
+            jdbcRunDao.addRun(currentRun);
+        } catch (DaoException e) {
+            System.out.println(e);
+        }
     }
 
     public void welcomeAndNameSetting(Scanner input, Hero hero) {
@@ -116,31 +136,6 @@ public class FantasySwordDuels {
         System.out.println(ANSI_LIGHT_GRAY + "Armor" + ANSI_RESET + " is calculated based on the " + ANSI_MAGENTA + "Strength" + ANSI_RESET + " attribute." + ANSI_LIGHT_GRAY
                 + " Armor" + ANSI_RESET + " provides a chance that incoming damage will be reduced or prevented.");
         System.out.println(ANSI_MAGENTA + "Strength" + ANSI_RESET + " is the attribute used in damage calculations.");
-    }
-
-    public void requestGamerTag(User user) {
-        System.out.print("\nWould you like your score (highest level completed) to be added to our public scoreboard? (y)es or (n)o: ");
-        String yesOrNo = "";
-        while (true) {
-            yesOrNo = input.nextLine();
-            if (yesOrNo.equals("y") || yesOrNo.equals("n")) {
-                break;
-            }
-            System.out.print("Please enter 'y' for yes or 'n' for no: ");
-        }
-
-        String gamerTag = "";
-        if (yesOrNo.equals("y")) {
-            while (true) {
-                System.out.print("Please enter the name you would like to be displayed: ");
-                gamerTag = input.nextLine();
-                if (gamerTag.length() >= 3 && gamerTag.length() <= 16) {
-                    break;
-                }
-                System.out.println("Your name must be between 3-16 characters in length.");
-            }
-        }
-        user.setGamerTag(gamerTag);
     }
 
     public void setUpCombatTracking(User user) {
