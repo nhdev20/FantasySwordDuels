@@ -1,8 +1,7 @@
 package fsd;
 
 import fsd.*;
-import fsd.Dao.JdbcRunDao;
-import fsd.Dao.RunDao;
+import fsd.Dao.*;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -25,6 +24,8 @@ public class FantasySwordDuels {
     Scanner input = new Scanner(System.in);
 
     private final RunDao jdbcRunDao;
+    private final SkillDao jdbcSkillDao;
+    private final SelectionDao jdbcSelectionDao;
 
     public static void main(String[] args) {
 //        ConsoleUtility.demoAll();
@@ -38,6 +39,8 @@ public class FantasySwordDuels {
 
     public FantasySwordDuels(DataSource dataSource) {
         jdbcRunDao = new JdbcRunDao(dataSource);
+        jdbcSkillDao = new JdbcSkillDao(dataSource);
+        jdbcSelectionDao = new JdbcSelectionDao(dataSource);
     }
 
 
@@ -97,13 +100,20 @@ public class FantasySwordDuels {
         Run currentRun = new Run(now, completedLevels);
         try {
             currentRun = jdbcRunDao.addRun(currentRun);
+
+            jdbcSkillDao.linkRunSkill(currentRun.getRunId(), "Health", hero.getBaseHealth());
+            jdbcSkillDao.linkRunSkill(currentRun.getRunId(), "Speed", hero.getSpeed());
+            jdbcSkillDao.linkRunSkill(currentRun.getRunId(), "Strength", hero.getStrength());
+
+            jdbcSelectionDao.linkRunSelection(currentRun.getRunId(), "Quick Attack", user.getCombatOptionDistribution().get("Quick Attack"));
+            jdbcSelectionDao.linkRunSelection(currentRun.getRunId(), "Heavy Attack", user.getCombatOptionDistribution().get("Heavy Attack"));
+            jdbcSelectionDao.linkRunSelection(currentRun.getRunId(), "Block", user.getCombatOptionDistribution().get("Block"));
+            jdbcSelectionDao.linkRunSelection(currentRun.getRunId(), "Dodge", user.getCombatOptionDistribution().get("Dodge"));
+            jdbcSelectionDao.linkRunSelection(currentRun.getRunId(), "Heal", user.getCombatOptionDistribution().get("Heal"));
+            jdbcSelectionDao.linkRunSelection(currentRun.getRunId(), "Fiery Strike", user.getCombatOptionDistribution().get("Fiery Strike"));
         } catch (DaoException e) {
             System.out.println(e);
         }
-
-        //at this point, currentRun has been returned with accurate run_id from database
-        //next step is to build skill and selection model/Dao interface/Dao implementation class
-        //look back at exercises regarding associative tables 'link'?
     }
 
     public void welcomeAndNameSetting(Scanner input, Hero hero) {
