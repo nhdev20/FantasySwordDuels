@@ -96,10 +96,14 @@ public class FantasySwordDuels {
 
         Run currentRun = new Run(now, completedLevels);
         try {
-            jdbcRunDao.addRun(currentRun);
+            currentRun = jdbcRunDao.addRun(currentRun);
         } catch (DaoException e) {
             System.out.println(e);
         }
+
+        //at this point, currentRun has been returned with accurate run_id from database
+        //next step is to build skill and selection model/Dao interface/Dao implementation class
+        //look back at exercises regarding associative tables 'link'?
     }
 
     public void welcomeAndNameSetting(Scanner input, Hero hero) {

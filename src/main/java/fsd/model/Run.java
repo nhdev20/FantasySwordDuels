@@ -5,11 +5,14 @@ import java.time.LocalDateTime;
 public class Run {
     private int runId;
     private LocalDateTime dateTime;
-    private int highestLevelComplete;
+    private int highestLevelCompleted;
 
+    public Run() {
+
+    }
     public Run(LocalDateTime dateTime, int highestLevelComplete) {
         this.dateTime = dateTime;
-        this.highestLevelComplete = highestLevelComplete;
+        this.highestLevelCompleted = highestLevelComplete;
     }
 
     public int getRunId() {
@@ -29,10 +32,10 @@ public class Run {
     }
 
     public int getHighestLevelComplete() {
-        return highestLevelComplete;
+        return highestLevelCompleted;
     }
 
     public void setHighestLevelComplete(int highestLevelComplete) {
-        this.highestLevelComplete = highestLevelComplete;
+        this.highestLevelCompleted = highestLevelComplete;
     }
 }

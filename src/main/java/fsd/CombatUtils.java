@@ -157,7 +157,7 @@ public class CombatUtils {
                     System.out.println("(" + hero.getName() + "'s armor helped buffer the blow.)");
                 }
             } else {
-                System.out.println("Both combatants attempt a quick attack and parry each other's blow.");
+                System.out.println("Both combatants attempt a quick attack and parry each other's blows.");
             }
         }
         if (enemyOption == 2) {

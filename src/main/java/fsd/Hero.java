@@ -156,7 +156,7 @@ public class Hero extends Character {
             System.out.println("Speed: " + speedAddition);
             System.out.println("Strength: " + strengthAddition);
             if (distributeTotal > 0) {
-                System.out.println("You have " + distributeTotal + " unspent points.");
+                System.out.println("You have " + distributeTotal + " unspent point(s).");
             }
             System.out.print("\nDo you want to (c)ontinue or (r)edistribute your attribute points? ");
 
@@ -324,7 +324,7 @@ public class Hero extends Character {
             System.out.println("Speed: +" + speedAddition);
             System.out.println("Strength: +" + strengthAddition);
             if (distributeTotal > 0) {
-                System.out.println("You have " + distributeTotal + " unspent points.");
+                System.out.println("You have " + distributeTotal + " unspent point(s).");
             }
             System.out.print("\nDo you want to (c)ontinue or (r)edistribute your attribute points? ");
 

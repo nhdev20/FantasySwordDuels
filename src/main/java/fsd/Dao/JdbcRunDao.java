@@ -24,10 +24,10 @@ public class JdbcRunDao implements RunDao{
         Run newRun = null;
 
         String sql = "INSERT INTO run (date_time, highest_level_completed)\n" +
-                "VALUES (?, ?);";
+                "VALUES (?, ?) RETURNING run_id";
 
         try {
-            int newRunId = jdbcTemplate.queryForObject(sql, Integer.class, run.getDateTime(), run.getHighestLevelComplete());
+            Integer newRunId = jdbcTemplate.queryForObject(sql, Integer.class, run.getDateTime(), run.getHighestLevelComplete());
 
             newRun = getRunById(newRunId);
         } catch (CannotGetJdbcConnectionException e) {
@@ -42,7 +42,8 @@ public class JdbcRunDao implements RunDao{
 
     @Override
     public Run getRunById(int runId) throws DaoException{
-        Run run = null;
+
+        Run run = new Run();
         String sql = "SELECT * FROM run WHERE run_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, runId);
@@ -52,6 +53,7 @@ public class JdbcRunDao implements RunDao{
                     run.setDateTime(results.getTimestamp("date_time").toLocalDateTime());
                 }
                 run.setHighestLevelComplete(results.getInt("highest_level_completed"));
+                return run;
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Connection issue with server or database", e);
@@ -60,6 +62,6 @@ public class JdbcRunDao implements RunDao{
         } catch (BadSqlGrammarException e) {
             throw new DaoException("SQL syntax error", e);
         }
-        return run;
+        return null;
     }
 }
