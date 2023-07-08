@@ -1,6 +1,6 @@
-package fsd.Dao;
+package fsd.dao;
 
-import fsd.Exception.DaoException;
+import fsd.exception.DaoException;
 
 public interface SelectionDao {
     void linkRunSelection (int runId, String selectionName, int selectionCount) throws DaoException;

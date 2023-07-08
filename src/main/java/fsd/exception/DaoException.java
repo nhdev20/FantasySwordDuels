@@ -1,4 +1,4 @@
-package fsd.Exception;
+package fsd.exception;
 
 public class DaoException extends Exception{
     public DaoException() {

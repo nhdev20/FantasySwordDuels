@@ -1,22 +1,16 @@
 package fsd;
 
-import fsd.*;
-import fsd.Dao.*;
+import fsd.dao.*;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import fsd.Exception.DaoException;
+import fsd.exception.DaoException;
 import fsd.model.Run;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
-
-import javax.sql.DataSource;
 
 import static fsd.util.ConsoleUtility.*;
 

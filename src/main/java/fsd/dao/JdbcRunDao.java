@@ -1,6 +1,6 @@
-package fsd.Dao;
+package fsd.dao;
 
-import fsd.Exception.DaoException;
+import fsd.exception.DaoException;
 import fsd.model.Run;
 
 import org.springframework.dao.DataIntegrityViolationException;

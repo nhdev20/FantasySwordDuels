@@ -1,6 +1,6 @@
-package fsd.Dao;
+package fsd.dao;
 
-import fsd.Exception.DaoException;
+import fsd.exception.DaoException;
 
 public interface SkillDao {
     void linkRunSkill(int runId, String skillName, int skillValue) throws DaoException;
