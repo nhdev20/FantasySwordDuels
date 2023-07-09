@@ -22,11 +22,14 @@ public class FantasySwordDuels {
     private final SelectionDao jdbcSelectionDao;
 
     public static void main(String[] args) {
-//        ConsoleUtility.demoAll();
+
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/FantasySwordDuels");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("postgres1");
+        String dbPassword = System.getenv("fsdDbPassword");
+        String dbUsername = System.getenv("fsdDbUsername");
+        String dbUrl = System.getenv("fsdDbUrl");
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(dbUsername);
+        dataSource.setPassword(dbPassword);
         FantasySwordDuels fsdApp = new FantasySwordDuels(dataSource);
         fsdApp.run();
     }

@@ -11,8 +11,6 @@ abstract class Character {
     private int speed;
     private int strength;
 
-    //List of special move objects (2)
-
     public void setName(String name) {
         this.name = name;
     }

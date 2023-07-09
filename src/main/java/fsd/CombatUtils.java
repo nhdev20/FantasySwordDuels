@@ -8,8 +8,7 @@ import java.util.Scanner;
 import static fsd.util.ConsoleUtility.*;
 
 public class CombatUtils {
-// Yoav: make static class?
-// Yoav: attack/move classes?
+// make static class?
 
     private String displayCombatOptions = ANSI_CYAN + "(1) Quick Attack, (2) Heavy Attack, (3) Block, (4) Dodge" + ANSI_RESET;
 
