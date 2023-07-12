@@ -48,6 +48,7 @@ public class CombatUtils {
         while(hero.getHealth() > 0 && enemy.getHealth() > 0) {
             hero.stat();
             enemy.stat();
+            System.out.println(displayHealthBar(hero.getBaseHealth(), hero.getHealth()));
             int heroCombatOption = selectCombatOption(input, hero);
             roundResolve(hero, enemy, heroCombatOption, enemy.enemyCombatOption(), user);
             System.out.println();
@@ -449,5 +450,15 @@ public class CombatUtils {
         }
     }
 
+    public String displayHealthBar(int maxHealth, int currentHealth) {
+        String healthBar = ANSI_RED + "HP: ";
+        for (int i = 1; i <= currentHealth; i++) {
+            healthBar += ANSI_GREEN + "-";
+        }
+        for (int i = 1; i <= (maxHealth - currentHealth); i++) {
+            healthBar += ANSI_RED + "x";
+        }
+        return healthBar;
+    }
 
 }
