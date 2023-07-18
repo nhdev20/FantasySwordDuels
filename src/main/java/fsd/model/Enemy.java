@@ -1,8 +1,8 @@
-package fsd;
+package fsd.model;
 
-import fsd.Character;
+import fsd.util.Tools;
 
-public class Enemy extends Character {
+public class Enemy extends fsd.model.Character {
     Tools tools = new Tools();
     private String name;
 

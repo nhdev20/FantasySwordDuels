@@ -1,4 +1,4 @@
-package fsd;
+package fsd.util;
 
 import java.util.Date;
 import java.util.Random;

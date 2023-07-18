@@ -1,8 +1,6 @@
-package fsd;
+package fsd.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import fsd.util.Tools;
 
 abstract class Character {
     Tools tools = new Tools();

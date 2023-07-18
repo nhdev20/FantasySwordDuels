@@ -1,13 +1,15 @@
-package fsd;
+package fsd.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import fsd.model.Enemy;
+import fsd.model.Hero;
+import fsd.model.User;
+
 import java.util.Map;
 import java.util.Scanner;
 
 import static fsd.util.ConsoleUtility.*;
 
-public class CombatUtils {
+public class CombatUtility {
 // make static class?
 
     private String displayCombatOptions = ANSI_CYAN + "(1) Quick Attack, (2) Heavy Attack, (3) Block, (4) Dodge" + ANSI_RESET;

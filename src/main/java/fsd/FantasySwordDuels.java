@@ -9,7 +9,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 import fsd.exception.DaoException;
+import fsd.model.Enemy;
+import fsd.model.Hero;
 import fsd.model.Run;
+import fsd.model.User;
+import fsd.util.CombatUtility;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import static fsd.util.ConsoleUtility.*;
@@ -43,7 +47,7 @@ public class FantasySwordDuels {
 
     public void run() {
         Hero hero = new Hero();
-        CombatUtils combat = new CombatUtils();
+        CombatUtility combat = new CombatUtility();
         User user = new User();
         setUpCombatTracking(user);
 

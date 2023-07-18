@@ -1,12 +1,10 @@
-package fsd;
-
-import fsd.Character;
+package fsd.model;
 
 import java.util.*;
 
 import static fsd.util.ConsoleUtility.*;
 
-public class Hero extends Character {
+public class Hero extends fsd.model.Character {
     private int baseHealth;
     private int healCount;
     private int fieryStrikeCount;
