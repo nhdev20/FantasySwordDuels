@@ -35,6 +35,6 @@ Create a *front end* to:
  - display a scoreboard
 
 **Future fantasies**:
- - *difficulty levels* - perhaps enemies learning from player actions (**machine learning**)
- - *compare combat and attribute point allocation strategies* across players of the game (**data analysis**)
+ - *difficulty levels* - perhaps enemies learning from player actions
+ - *compare combat and attribute point allocation strategies* across players of the game
 
